@@ -241,9 +241,9 @@ function drawVoronoiConvexGeometry(model, scene, physics) {
     mesh.translateY(1.5);
     physics.add.existing(mesh, { shape: "convexMesh" });
     const { body } = mesh;
-    body.setFriction(Math.random() * 0.1 + 0.1);
+    body.setFriction(Math.random() * 0.05 + 0.1);
   });
 }
 
-// '/ammo' is the folder where all ammo file are
-PhysicsLoader("/ammo", () => MainScene());
+// '/ammo' is the folder where all ammo files are
+PhysicsLoader("./ammo", () => MainScene());

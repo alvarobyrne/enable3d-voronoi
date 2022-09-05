@@ -13,3 +13,7 @@
 This is a fork of the template [repo](https://github.com/enable3d/threejs-ammojs-webpack-example) at the [enable3d](https://math.lbl.gov/voro++/examples/random_points/) github organization
 
 This is the forked [README](./README.forked.md)
+
+# Instructions
+
+Use the arrow keys to move the 'i' shaped body.

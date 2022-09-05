@@ -1,10 +1,10 @@
 # Three.js & ammo.js (enable3d) & voro++
 
-  [enable3d at github]("https://github.com/enable3d): a three-js and ammo-js wrapper, among other things.
+  [enable3d at github](https://github.com/enable3d): a three-js and ammo-js wrapper, among other things.
 
-  [voro++ homepage]("https://math.lbl.gov/voro++/): a c++ library for generating 3d voronoi tessellations.
+  [voro++ homepage](https://math.lbl.gov/voro++/): a c++ library for generating 3d voronoi tessellations.
 
-  [voro++ at github]("https://github.com/chr1shr/voro)
+  [voro++ at github](https://github.com/chr1shr/voro)
 
   In this case we have ran the `basic/random_points` [(random points)](https://math.lbl.gov/voro++/examples/random_points/) example from the voro++ library examples suite, using a diferent[Voro++ customized output format](https://math.lbl.gov/voro++/doc/custom.html) in order to generate the files at the `data` folder from which the voronoi cells data are read in order to construct the threejs meshes.
 

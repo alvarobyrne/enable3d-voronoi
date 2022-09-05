@@ -1,37 +1,15 @@
-# Three.js & ammo.js (enable3d)
+# Three.js & ammo.js (enable3d) & voro++
 
-<img width="640" alt="screenshot" src="./readme/screenshot.png">
+  [enable3d at github]("https://github.com/enable3d): a three-js and ammo-js wrapper, among other things.
 
----
+  [voro++ homepage]("https://math.lbl.gov/voro++/): a c++ library for generating 3d voronoi tessellations.
 
-## Example of Three.js with ammo.js
+  [voro++ at github]("https://github.com/chr1shr/voro)
 
-- Contains a **CSG Example with BufferGeometries**.
-- Contains the **Flat Package for 2D Elements**.
+  In this case we have ran the `basic/random_points` [(random points)](https://math.lbl.gov/voro++/examples/random_points/) example from the voro++ library examples suite, using a diferent[Voro++ customized output format](https://math.lbl.gov/voro++/doc/custom.html) in order to generate the files at the `data` folder from which the voronoi cells data are read in order to construct the threejs meshes.
 
-## Projects
+# This is a fork 
 
-The `index.ts` file contains to different project:
+This is a fork of the template [repo](https://github.com/enable3d/threejs-ammojs-webpack-example) at the [enable3d](https://math.lbl.gov/voro++/examples/random_points/) github organization
 
-- `three.ts` file contains a three.js project with Enable3d's **Physics Extension**.
-- `standalone.ts` file contains a **Standalone Enable3d** project.
-
-## Install & Run
-
-```console
-# download this repo
-npx gitget enable3d/threejs-ammojs-webpack-example enable3d-webpack
-
-# navigate into the directory
-cd enable3d-webpack
-
-# install
-npm install
-
-# start
-npm start
-```
-
-## Dependencies
-
-The only dependency is `enable3d`. All other dependencies (three.js etc.), are installed with `enable3d`.
+This is the forked [README](./README.forked.md)

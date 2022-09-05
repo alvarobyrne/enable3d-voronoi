@@ -60,7 +60,7 @@ const MainScene = async () => {
   document.body.appendChild(renderer.domElement);
 
   // add 2d text
-  const text = new TextTexture("threejs-ammojs-webpack-example", {
+  const text = new TextTexture("threejs-ammojs-voro++ example", {
     fontWeight: "bold",
     fontSize: 48,
   });

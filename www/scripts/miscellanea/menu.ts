@@ -19,4 +19,8 @@ export default function () {
     "https://math.lbl.gov/voro++/doc/custom.html",
     "Voro++ customized output reference"
   );
+  addItem(
+    "https://github.com/alvarobyrne/enable3d-voronoi",
+    "this demo's repo at github"
+  );
 }

@@ -60,10 +60,13 @@ const MainScene = async () => {
   document.body.appendChild(renderer.domElement);
 
   // add 2d text
-  const text = new TextTexture("threejs-ammojs-voro++ example", {
-    fontWeight: "bold",
-    fontSize: 48,
-  });
+  const text = new TextTexture(
+    "threejs, ammojs & voro++. Press the red button to start.",
+    {
+      fontWeight: "bold",
+      fontSize: 48,
+    }
+  );
   const sprite = new TextSprite(text);
   const scale = 0.5;
   sprite.setScale(scale);
@@ -196,16 +199,23 @@ const MainScene = async () => {
         break;
     }
   });
-  menu
+  const startPhysicsButton = menu
     .add(
       {
         f: () => {
           voronoiBodies.forEach((xMesh) => xMesh.body.setCollisionFlags(0));
+          buttonElement?.removeAttribute("style");
         },
       },
       "f"
     )
     .name("start voronoi physics");
+  const buttonElement: HTMLLIElement = startPhysicsButton.domElement.parentNode!
+    .parentNode as HTMLLIElement;
+  buttonElement.style.backgroundColor = "red";
+  buttonElement.style.textShadow = "none";
+  buttonElement.style.color = "black";
+
   menu
     .add(
       {

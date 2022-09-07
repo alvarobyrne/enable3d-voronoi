@@ -27,5 +27,11 @@ export default { gui };
     "https://github.com/alvarobyrne/enable3d-voronoi",
     "this demo's repo at github"
   );
+  const host = location.host;
+  if (host.includes("127"))
+    addItem(
+      "https://alvarobyrne.github.io/enable3d-voronoi/",
+      "this demo hosted at github"
+    );
 })();
 export { menu };

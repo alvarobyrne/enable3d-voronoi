@@ -13,7 +13,7 @@ import {
 import { TextTexture, TextSprite } from "@enable3d/three-graphics/jsm/flat";
 import VoronoiLoader from "./loader/VoronoiLoader";
 import { ConvexGeometry } from "./jsm/geometries/ConvexGeometry";
-import menu from "./miscellanea/menu";
+import { menu } from "./miscellanea/menu";
 
 console.log("Three.js version r" + THREE.REVISION);
 
@@ -150,7 +150,11 @@ const MainScene = async () => {
   const exclamationMarkPhyicsBody = exclamationMark();
   const exclamationMarkBody = exclamationMarkPhyicsBody.body;
 
-  drawVoronoiConvexGeometry(voronoiData, scene, physics);
+  const voronoiBodies: ExtendedMesh[] = setVoronoi3DAndBody(
+    voronoiData,
+    scene,
+    physics
+  );
 
   // clock
   const clock = new THREE.Clock();
@@ -192,7 +196,41 @@ const MainScene = async () => {
         break;
     }
   });
-  menu();
+  menu
+    .add(
+      {
+        f: () => {
+          voronoiBodies.forEach((xMesh) => xMesh.body.setCollisionFlags(0));
+        },
+      },
+      "f"
+    )
+    .name("start voronoi physics");
+  menu
+    .add(
+      {
+        f: () => {
+          voronoiBodies.forEach((xMesh) => {
+            physics.destroy(xMesh.body);
+            scene.remove(xMesh);
+          });
+          voronoiBodies.length = 0;
+        },
+      },
+      "f"
+    )
+    .name("remove voronoi ");
+  menu
+    .add(
+      {
+        f: () =>
+          voronoiBodies.push(
+            ...setVoronoi3DAndBody(voronoiData, scene, physics, false)
+          ),
+      },
+      "f"
+    )
+    .name("add voronoi");
 };
 
 function voronoiBufferGeometry(model, scene) {
@@ -216,14 +254,15 @@ function drawPolyhedron(scene, vertex, index, color) {
   scene.add(mesh);
   return mesh;
 }
-function drawVoronoiConvexGeometry(model, scene, physics) {
-  model.vertex.forEach((cellVertices, i) => {
-    cellVertices.forEach((vertex) =>
-      (vertex as THREE.Vector3).sub(new THREE.Vector3(...model.centroids[i]))
-    );
-  });
+function setVoronoi3DAndBody(model, scene, physics, isCentering = true) {
+  if (isCentering)
+    model.vertex.forEach((cellVertices, i) => {
+      cellVertices.forEach((vertex) =>
+        (vertex as THREE.Vector3).sub(new THREE.Vector3(...model.centroids[i]))
+      );
+    });
 
-  model.vertex.forEach((cellVertices, i) => {
+  return model.vertex.map((cellVertices, i) => {
     const geometry = new ConvexGeometry(cellVertices);
     const material = new THREE.MeshLambertMaterial({
       color: faceColors[i % faceColors.length],
@@ -242,6 +281,8 @@ function drawVoronoiConvexGeometry(model, scene, physics) {
     physics.add.existing(mesh, { shape: "convexMesh" });
     const { body } = mesh;
     body.setFriction(Math.random() * 0.05 + 0.1);
+    body.setCollisionFlags(2); // make it kinematic
+    return mesh;
   });
 }
 

@@ -1,7 +1,10 @@
 import * as dat from "dat.gui";
 import clickable from "../utils/clickable";
 const gui = new dat.GUI();
-const addItem = (url: string, name: string) => {
+const menu = gui.addFolder("menu");
+menu.open();
+const folder = gui.addFolder("External links");
+const addItem = (url: string, name: string, gui = folder) => {
   gui
     .add(
       {
@@ -11,7 +14,8 @@ const addItem = (url: string, name: string) => {
     )
     .name(name);
 };
-export default function () {
+export default { gui };
+(function () {
   addItem("https://github.com/enable3d", "enable3d at github");
   addItem("https://math.lbl.gov/voro++/", "voro++ homepage");
   addItem("https://github.com/chr1shr/voro", "voro++ at github");
@@ -23,4 +27,5 @@ export default function () {
     "https://github.com/alvarobyrne/enable3d-voronoi",
     "this demo's repo at github"
   );
-}
+})();
+export { menu };
